@@ -8,7 +8,6 @@ const data = {
 
 @circuitBreaker
 class Endpoint {
-  // Could also add a function-level annotation here
   sendData() {
     return data;
   }
