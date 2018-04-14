@@ -1,10 +1,10 @@
 
 const circuitBreaker = (target, propertyKey, descriptor) => {
-  const oldValue = descriptor.value;
+  const originalFn = descriptor.value;
 
   descriptor.value = () => ({
     circuitBreaker: true,
-    data: oldValue(),
+    data: originalFn(),
   });
 
   return descriptor;
