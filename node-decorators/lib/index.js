@@ -1,11 +1,9 @@
-import http from 'http';
+import express from 'express';
 import Endpoint from './endpoint';
 
-const { sendData } = new Endpoint();
+const { getData } = new Endpoint();
+const app = express();
 
-http.createServer((req, res) => {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end(sendData());
-}).listen(1337, '127.0.0.1');
+app.get('/', (req, res) => res.json(getData()))
 
-console.log('Server running at http://127.0.0.1:1337/');
+app.listen(1337, () => console.log('Server running at port 1337'))

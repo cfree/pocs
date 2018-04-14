@@ -6,9 +6,9 @@ const data = {
   'rawr': false
 };
 
-@circuitBreaker
 class Endpoint {
-  sendData() {
+  @circuitBreaker
+  getData() {
     return data;
   }
 }

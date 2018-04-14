@@ -1,14 +1,13 @@
 
-const circuitBreaker = (target) => {
-  const oldValue = Object.getOwnPropertyDescriptor(target, 'sendData');
-  console.log('TARGET', target);
+const circuitBreaker = (target, propertyKey, descriptor) => {
+  const oldValue = descriptor.value;
 
-  Object.defineProperty(target, 'sendData', {
-    value: {
-      circuitBreaker: true,
-      data: oldValue(),
-    }
+  descriptor.value = () => ({
+    circuitBreaker: true,
+    data: oldValue(),
   });
+
+  return descriptor;
 };
 
 export default circuitBreaker;
