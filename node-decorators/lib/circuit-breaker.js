@@ -2,6 +2,8 @@
 const circuitBreaker = (target, propertyKey, descriptor) => {
   const originalFn = descriptor.value;
 
+  // Simulate open check
+
   descriptor.value = () => ({
     circuitBreaker: true,
     data: originalFn(),
